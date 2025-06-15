@@ -36,6 +36,8 @@ class TranspositionTable;
 // its previous state when we retract a move. Whenever a move is made on the
 // board (by calling Position::do_move), a StateInfo object must be passed.
 
+// The memory layout in bytes is the following, values in brackets are padding
+// 8 8 8 8[2] 4[2] 4 4 4 1   1 1 (1) 8 8 8 8[2] 8[2] 8[8]
 struct StateInfo {
 
     // Copied when making a move
@@ -50,14 +52,14 @@ struct StateInfo {
     Square epSquare;
 
     // Not copied when making a move (will be recomputed anyhow)
+    Piece      capturedPiece;
+    int8_t     repetition;
     Key        key;
     Bitboard   checkersBB;
     StateInfo* previous;
     Bitboard   blockersForKing[COLOR_NB];
     Bitboard   pinners[COLOR_NB];
     Bitboard   checkSquares[PIECE_TYPE_NB];
-    Piece      capturedPiece;
-    int        repetition;
 };
 
 
