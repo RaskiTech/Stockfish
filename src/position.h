@@ -24,6 +24,7 @@
 #include <iosfwd>
 #include <memory>
 #include <string>
+#include <cstddef>
 
 #include "bitboard.h"
 #include "types.h"
@@ -37,17 +38,16 @@ class TranspositionTable;
 // board (by calling Position::do_move), a StateInfo object must be passed.
 
 struct StateInfo {
-
     // Copied when making a move
-    Key    materialKey;
-    Key    pawnKey;
-    Key    minorPieceKey;
-    Key    nonPawnKey[COLOR_NB];
-    Value  nonPawnMaterial[COLOR_NB];
-    int    castlingRights;
-    int    rule50;
-    int    pliesFromNull;
-    Square epSquare;
+    Key     materialKey;
+    Key     pawnKey;
+    Key     minorPieceKey;
+    Key     nonPawnKey[COLOR_NB];
+    Value   nonPawnMaterial[COLOR_NB];
+    int16_t pliesFromNull;
+    int16_t rule50;
+    int8_t  castlingRights;
+    Square  epSquare;
 
     // Not copied when making a move (will be recomputed anyhow)
     Piece      capturedPiece;
