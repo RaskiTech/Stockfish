@@ -36,8 +36,6 @@ class TranspositionTable;
 // its previous state when we retract a move. Whenever a move is made on the
 // board (by calling Position::do_move), a StateInfo object must be passed.
 
-// The memory layout in bytes is the following, values in brackets are padding
-// 8 8 8 8[2] 4[2] 4 4 4 1   1 1 (1) 8 8 8 8[2] 8[2] 8[8]
 struct StateInfo {
 
     // Copied when making a move
